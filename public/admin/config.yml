@@ -1,0 +1,42 @@
+backend:
+  name: git-gateway
+  branch: main   # or master
+
+
+local_backend: false
+logo_url: https://d33wubrfki0l68.cloudfront.net/c89899bad974606ce0e0f5d5a95842dc787dcb56/7fe98/assets/images/logo-blue.png
+
+# Global media folder used by blog; products will override with their own
+media_folder: 'public/images/blog'
+public_folder: '/images/blog'
+
+collections:
+  - name: 'blog'
+    label: 'Blog'
+    folder: 'src/blog'
+    create: true
+    slug: '{{pageName}}'
+    fields:
+      - { label: 'Page-Name-with-dashes-only', name: 'pageName', widget: 'string' }
+      - { label: 'Blog Title', name: 'blogTitle', widget: 'string' }
+      - { label: 'Title Tag', name: 'titleTag', widget: 'string' }
+      - { label: 'Description', name: 'blogDescription', widget: 'string' }
+      - { label: 'Author', name: 'author', widget: 'string' }
+      - { label: 'Date', name: 'date', widget: 'datetime' }
+      - { label: 'Tags', name: 'tags', widget: 'list', default: ['post'] }
+      - { label: 'Featured Image', name: 'image', widget: 'image' }
+      - { label: 'Image Caption', name: 'imageAlt', widget: 'string' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
+
+  - name: "products"
+    label: "Products"
+    folder: "src/products/items"   # <— changed
+    create: true
+    slug: "{{sku}}"
+    fields:
+      - { label: "SKU", name: "sku", widget: "string" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Price", name: "price", widget: "number", value_type: "float" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Active", name: "active", widget: "boolean", default: true }
